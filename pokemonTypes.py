@@ -38,5 +38,15 @@ def HappiestPokemon():
     return HappiestPokemon
 
 #which pokemons are the hardest to catch?
+def HardestPokemon():
+    hardestRate = min(df['capture_rate'])
+    rateCount = (df.capture_rate.values == hardestRate).sum()
+    dfTemp = df.sort_values(by = 'capture_rate', axis=0, ascending=True, inplace=False, kind='quicksort', na_position='first')
+    hardestPokemon = dfTemp[['name']].head(int(rateCount)).to_string(index=False, header=False)
+    return hardestPokemon
+
 #which is the weakest type?
 #which is the strongest type?
+
+
+print(HardestPokemon())
