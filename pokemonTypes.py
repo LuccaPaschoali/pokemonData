@@ -48,12 +48,11 @@ def HardestPokemon():
 
 
 #Average status per type, will be usefull in the next two functions
-def AverageStatus(type1):
-    avgStatus = df.loc[(df['type1'] == type1) | (df['type2'] == type1), 'status'].sum()
-    typeAmount = (df.type1.values == type1).sum() + (df.type2.values == type1).sum()
+def AverageStatus(type):
+    avgStatus = df.loc[(df['type1'] == type) | (df['type2'] == type), 'status'].sum()
+    typeAmount = (df.type1.values == type).sum() + (df.type2.values == type).sum()
     avgStatus = int(avgStatus/typeAmount)
-    print(avgStatus)
-    print(typeAmount)
+    return avgStatus
 
 #which is the weakest type?
 #which is the strongest type?
