@@ -45,8 +45,6 @@ def HardestPokemon():
     hardestPokemon = dfTemp[['name']].head(int(rateCount)).to_string(index=False, header=False)
     return hardestPokemon
 
-
-
 #Average status per type, will be usefull in the next two functions
 def AverageStatus(type):
     avgStatus = df.loc[(df['type1'] == type) | (df['type2'] == type), 'status'].sum()
@@ -54,5 +52,20 @@ def AverageStatus(type):
     avgStatus = int(avgStatus/typeAmount)
     return avgStatus
 
-#which is the weakest type?
 #which is the strongest type?
+def StrongestType():
+    types = df['type1'].unique()
+    strongerType = types[0]
+    for type in types:
+        if AverageStatus(type) > AverageStatus(strongerType):
+            strongerType = type
+    return strongerType
+
+#which is the weakest type?
+def WeakestType():
+    types = df['type1'].unique()
+    weakerType = types[0]
+    for type in types:
+        if AverageStatus(type) < AverageStatus(weakerType):
+            weakerType = type
+    return weakerType
